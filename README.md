@@ -1,6 +1,6 @@
 Hey!
 
-I run into a `terraform init` error when using any self-referential module declaration:
+Looks like `terraform init` fails when any module references itself:
 
 ```
 module "dir" {
