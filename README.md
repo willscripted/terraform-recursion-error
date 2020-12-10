@@ -1,9 +1,21 @@
 Hey!
 
-This is the error I'm seeing trying to add a module that uses itself:
+This is the error I'm seeing trying to add a module that uses itself.
+
+Module:
+
+```
+module "dir" {
+  source = "./"
+  for_each = { for file in local.root_filesystem : file.name => file if file.type == "dir" }
+
+  name = each.key
+  children = each.value.children
+}
+```
 
 
-### 0.13.5
+### 0.13.5 `terraform init`
 
 ```
 > terraform init
@@ -31,7 +43,7 @@ file name too long
 { .. clipped .. }
 ```
 
-### 0.14.2
+### 0.14.2 `terraform init`
 
 ```
 > terraform init
