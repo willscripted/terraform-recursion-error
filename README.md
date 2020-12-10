@@ -9,7 +9,7 @@ make show
 
 You can run this example locally by cloning this repo and running `make show` or open a terraform console using `make console`. Will require `make` and `docker`.
 
-Module:
+Problem module declaration:
 
 ```
 module "dir" {
