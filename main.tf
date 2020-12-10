@@ -7,7 +7,7 @@ locals {
   ]
 }
 
-module "dir" {
+module "filetree" {
   source = "./dir"
   for_each = { for file in local.root_filesystem : file.name => file if file.type == "dir" }
 
