@@ -2,6 +2,11 @@ Hey!
 
 This is the error I'm seeing trying to add a module that uses itself.
 
+```
+git clone git@github.com:willscripted/terraform-recursion-error.git
+make show
+```
+
 You can run this example locally by cloning this repo and running `make show`.
 Or open a terraform console using `make console`. Will require `make` and `docker`.
 
