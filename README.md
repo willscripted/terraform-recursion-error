@@ -1,25 +1,35 @@
 Hey!
 
-This is the error I'm seeing trying to add a module that uses itself.
+I run into a `terraform init` error when using any self-referential module declaration:
+
+```
+module "dir" {
+  source = "./"
+  for_each = var.xyz
+}
+```
+
+```
+> terraform init
+
+Initializing modules...
+
+Error: Failed to remove local module cache
+
+Terraform tried to remove
+.terraform/modules/dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.dir.file
+in order to reinstall this module, but encountered an error: unlinkat
+```
+
+This demo code runs out of the box:
 
 ```
 git clone git@github.com:willscripted/terraform-recursion-error.git
 make show
 ```
 
-You can run this example locally by cloning this repo and running `make show` or open a terraform console using `make console`. Will require `make` and `docker`.
-
-Problem module declaration:
-
-```
-module "dir" {
-  source = "./"
-  for_each = { for file in local.root_filesystem : file.name => file if file.type == "dir" }
-
-  name = each.key
-  children = each.value.children
-}
-```
+You can also open a shell session in the demo code using `make console`. 
+Will require `make` and `docker`.
 
 
 ### 0.13.5 `terraform init`
